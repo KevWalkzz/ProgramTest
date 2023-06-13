@@ -1,9 +1,6 @@
 import time
 import re
-import sqlite3
 import sys
-import gettext
-
 
 class UserCreationError(Exception):
     pass
