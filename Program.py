@@ -1,9 +1,6 @@
 import time
 import re
-import sqlite3
 import sys
-import gettext
-
 
 class UserCreationError(Exception):
     pass
@@ -70,13 +67,13 @@ def pswConf():
     else:
         text = f"{conf} is not your password!"
         typingEffect(text, speed)
-        exit();
+        exit()
 pswConf()
 
 def main():
     selection = typingEffectInput(f"What do you want today, {username}?\n Options: Calculator. ")
-    if selection == "Calculator":
-        selec2 = typingEffectInput("Which type of calculator?\n Sum\n Subtraction\n Division\n")
+    if selection.capitalize() == "Calculator":
+        selec2 = typingEffectInput("Which type of calculator?\n Sum\n Subtraction\n Division\n").capitalize()
         if selec2 == "Sum":
             try:
                 x = float(typingEffectInput("What's x? "))
