@@ -1,39 +1,40 @@
 import re
 from typing_effects import typingEffect, typingEffectInput
 
-class UserCreationError(Exception):
-    pass
+class User:
+    user = ""
+    password = ""
+    email = ""
 
-def create_user(user, password, email):
-    if not user or not password or not email:
-        raise UserCreationError(typingEffect("Failed to create a new user. Fill all the blanks!"))
-    if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
-        raise UserCreationError(typingEffect("Failed to create with the provided email. Invalid email format."))
+    def __init__(self):
+        pass
 
-    return typingEffect("Successfully created user!")
+    def validate_user(self, user=""):
+        if len(user) >= 3:
+            self.user = user
+            return True
+        
+        return False
+    
+    def validate_password(self, password=""):
+        if len(password) >= 3:
+            self.password = password
+            return True
+        
+        return False
 
-
-def get_user_credentials():
-    username = typingEffectInput("What's your name? ").strip()
-    password = typingEffectInput("Please, insert a password. ").strip()
-    email = typingEffectInput("Please, insert a valid email. ").strip()
-    return username, password, email
-
-
-def handle_user_creation():
-    max_attempts = 3
-    attempts = 0
-
-    while attempts < max_attempts:
-        username, password, email = get_user_credentials()
-        try:
-            feedback = create_user(username, password, email)
-            return username, password
-
-        except UserCreationError as e:
-            attempts += 1
-            remaining_attempts = max_attempts - attempts
-            typingEffect(f"{remaining_attempts} attempts left.")
-
-    typingEffect("Maximum attempts reached. Exiting program.")
-    exit()
+    def validate_email(self, email=""):
+        if len(email) >= 8:
+            if re.match(r"[^@]+@[^@]+\.[^@]+", email):
+                return True
+            
+        return False
+    
+    def get_user(self):
+        return self.user
+    
+    def get_email(self):
+        return self.email
+    
+    def get_password(self):
+        return self.password
