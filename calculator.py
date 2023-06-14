@@ -5,6 +5,9 @@ from typing_effects import typingEffect, typingEffectInput
 def square(n):
     return n * n
 
+def cube(n):
+    return n * n * n
+
 
 def calculator(username):
     selection = typingEffectInput(f"What do you want today, {username}?\nOptions: Calculator. ")
@@ -12,10 +15,16 @@ def calculator(username):
         selec2 = typingEffectInput("Which type of calculator?\nSum\nSubtraction\nDivision\nMultiplication\nPower\n").capitalize()
 
         if selec2 == "Power":
-            x = float(typingEffectInput("What's x? "))
-            z = round(square(x))
+            selec3 = typingEffectInput("Square, Cube...? ").capitalize()
+            if selec3 == "Square":
+                x = float(typingEffectInput("What's x? "))
+                z = round(square(x))
+            elif selec3 == "Cube":
+                x = float(typingEffectInput("What's x? "))
+                z = round(cube(x))
 
-            typingEffect(f"The square of {x} is: {z:,}")
+            typingEffect(f"The power of {x} is: {z:,}")
+            time.sleep(5)
         else:
             try:
                 x = float(typingEffectInput("What's x? "))
