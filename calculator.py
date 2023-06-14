@@ -7,8 +7,7 @@ def square(n):
 
 
 def calculator(username):
-    selection = typingEffectInput(
-        f"What do you want today, {username}?\nOptions: Calculator. ")
+    selection = typingEffectInput(f"What do you want today, {username}?\nOptions: Calculator. ")
     if selection.capitalize() == "Calculator":
         selec2 = typingEffectInput("Which type of calculator?\nSum\nSubtraction\nDivision\nMultiplication\nPower\n").capitalize()
 
@@ -16,7 +15,7 @@ def calculator(username):
             x = float(typingEffectInput("What's x? "))
             z = round(square(x))
 
-            typingEffect(f"{z:,}")
+            typingEffect(f"The square of {x} is: {z:,}")
         else:
             try:
                 x = float(typingEffectInput("What's x? "))
