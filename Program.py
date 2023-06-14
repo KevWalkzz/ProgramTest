@@ -41,8 +41,7 @@ def password_confirmation(password, username):
         else:
             attempts += 1
             remaining_attempts = max_attempts - attempts
-            typingEffect(
-                f"{conf} is not your password! You have {remaining_attempts} attempts left.")
+            typingEffect(f"{conf} is not your password! You have {remaining_attempts} attempts left.")
 
     typingEffect("Maximum attempts reached. Exiting program.")
     exit()

@@ -1,8 +1,6 @@
 import re
 from typing_effects import typingEffect
 
-class UserCreationError(Exception):
-    pass
 
 def create_user(user, password, email):
     if not user or not password or not email:
