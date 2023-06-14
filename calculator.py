@@ -10,7 +10,6 @@ def cube(n):
 
 
 def calculator(username):
-    selection = typingEffectInput(f"What do you want today, {username}?\nOptions: Calculator. ")
     if selection.capitalize() == "Calculator":
         selec2 = typingEffectInput("Which type of calculator?\nSum\nSubtraction\nDivision\nMultiplication\nPower\n").capitalize()
 
@@ -55,5 +54,4 @@ def calculator(username):
         typingEffect("That's not a valid option!")
         time.sleep(5)
         exit()
-
-        pass
+        
