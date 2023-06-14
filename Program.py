@@ -1,5 +1,5 @@
 from user import create_user
-from calculator import calculator
+from calculator import calculator, square
 from typing_effects import typingEffect, typingEffectInput
 
 
