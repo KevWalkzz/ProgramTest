@@ -1,57 +1,29 @@
 import time
+from calculadora.math_operations import *
 from typing_effects import typingEffect, typingEffectInput
 
 
-def square(n):
-    return n * n
+def calculator():
+    selec2 = typingEffectInput("Which type of calculator?\nSum\nSubtraction\nDivision\nMultiplication\nPower\n").capitalize()
 
-def cube(n):
-    return n * n * n
+    if selec2 == "Power":
+        power()
 
+    elif selec2 in ["Sum", "Subtraction", "Division", "Multiplication"]:
 
-def calculator(username):
-    if selection.capitalize() == "Calculator":
-        selec2 = typingEffectInput("Which type of calculator?\nSum\nSubtraction\nDivision\nMultiplication\nPower\n").capitalize()
+        x = float(typingEffectInput("What's x? "))
+        y = float(typingEffectInput("What's y? "))
 
-        if selec2 == "Power":
-            selec3 = typingEffectInput("Square, Cube...? ").capitalize()
-            if selec3 == "Square":
-                x = float(typingEffectInput("What's x? "))
-                z = round(square(x))
-            elif selec3 == "Cube":
-                x = float(typingEffectInput("What's x? "))
-                z = round(cube(x))
-
-            typingEffect(f"The power of {x} is: {z:,}")
-            time.sleep(5)
-        else:
-            try:
-                x = float(typingEffectInput("What's x? "))
-                y = float(typingEffectInput("What's y? "))
-
-                if selec2 == "Sum":
-                    z = round(x + y)
-                elif selec2 == "Subtraction":
-                    z = round(x - y)
-                elif selec2 == "Division":
-                    z = round(x / y)
-                elif selec2 == "Multiplication":
-                    z = round(x * y)
-                else:
-                    typingEffect("That's not a valid option!")
-                    time.sleep(5)
-                    exit()
-
-                typingEffect(f"{z:,}")
-                time.sleep(5)
-
-            except ValueError:
-                typingEffect("Invalid input. Please enter numbers only!")
-                time.sleep(5)
-                exit()
+        if selec2 == "Sum":
+            sum(x, y)
+        elif selec2 == "Subtraction":
+            subtract(x, y)
+        elif selec2 == "Division":
+            divide(x, y)
+        elif selec2 == "Multiplication":
+            multiply(x, y)
 
     else:
-        typingEffect("That's not a valid option!")
+        typingEffect("Looks like the calculator doesn't have that function yet!")
         time.sleep(5)
         exit()
-        
