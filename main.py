@@ -28,7 +28,7 @@ def main():
     typingEffect(colorama.Fore.GREEN + "Logged in successfully!")
 
     while typingEffectInput(colorama.Fore.WHITE + f"What do you want today, {user.get_user()}? Options: Calculator. ").capitalize() not in ["Calculator"]:
-        typingEffect(colorama.Fore.RED + "That's not a valid option!, try again.")
+        typingEffect(colorama.Fore.RED + "That's not a valid option, try again.")
 
     while True:
         operation = typingEffectInput(colorama.Fore.WHITE + "Which type of calculator?\nSum\nSubtraction\nDivision\nMultiplication\nPower\n").capitalize()
@@ -62,7 +62,7 @@ def main():
                 typingEffect(colorama.Fore.RED + "Must be a number! Try again.")
 
         else:
-            typingEffect(colorama.Fore.RED + "Looks like the calculator doesn't have that function yet! choice another")
+            typingEffect(colorama.Fore.RED + "Looks like the calculator doesn't have that function yet! choose another")
 
 
 if __name__ == "__main__":
