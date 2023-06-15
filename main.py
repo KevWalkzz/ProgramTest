@@ -1,28 +1,38 @@
 import colorama
-from user import User
-from features.calculator import *
+from features.calculadora import *
 from utils.typing_effects import typingEffect, typingEffectInput
+from controller.user import User
+from controller.validate import *
+from controller.login import Login
 
 colorama.init()
 
-
 def main():
-    user = User()
+    email = typingEffectInput(colorama.Fore.WHITE + "Please, insert your email: ").strip()
 
-    while user.validate_email(typingEffectInput(colorama.Fore.WHITE + "Please, insert your email: ").strip()) == False:
+    while validate_email(email) == False:
         typingEffect(colorama.Fore.RED + "Invalid email, try again.")
+        email = typingEffectInput(colorama.Fore.WHITE + "Please, insert your email: ").strip()
 
-    while user.validate_user(typingEffectInput(colorama.Fore.WHITE + "What's your name? ").strip()) == False:
+    user = typingEffectInput(colorama.Fore.WHITE + "What's your name? ").strip()
+
+    while validate_user(user) == False:
         typingEffect(colorama.Fore.RED + "Invalid username, try again.")
+        user = typingEffectInput(colorama.Fore.WHITE + "What's your name? ").strip()
 
-    while user.validate_password(password=typingEffectInput(colorama.Fore.WHITE + "Please, insert your password: ").strip()) == False:
+    password = typingEffectInput(colorama.Fore.WHITE + "Please, insert your password: ").strip()
+
+    while validate_password(password) == False:
         typingEffect(colorama.Fore.RED + "Invalid password, try again.")
+        password = typingEffectInput(colorama.Fore.WHITE + "Please, insert your password: ").strip()
+    
+    user = User(email, user, password)
 
     typingEffect(colorama.Fore.GREEN + "User created successfully!")
 
     typingEffect(colorama.Fore.WHITE + "To log into your account insert your email, username and password.")
 
-    while user.login(email=typingEffectInput(colorama.Fore.WHITE + "Email: "), user=typingEffectInput("Username: "), password=typingEffectInput("Password: ")) == False:
+    while Login().login(email=typingEffectInput(colorama.Fore.WHITE + "Email: "), user=typingEffectInput("Username: "), password=typingEffectInput("Password: ")) == False:
         typingEffect(colorama.Fore.RED + "Log in failed, try again.")
 
     typingEffect(colorama.Fore.GREEN + "Logged in successfully!")
