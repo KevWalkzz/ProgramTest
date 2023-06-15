@@ -1,6 +1,9 @@
 import re
+import colorama
 from sys import exit
 from utils.typing_effects import typingEffect
+
+colorama.init()
 
 class User:
     user = ""
@@ -16,25 +19,25 @@ class User:
 
         if self.user == user and self.email == email and self.password == password:
             return True
-        
+
         if self.login_max_attempts == 0:
-            typingEffect("maximum number of attempts reached")
+            typingEffect(colorama.Fore.RED + "Maximum number of attempts reached.")
             exit()
-        
+
         return False
 
     def validate_user(self, user=""):
         if len(user) >= 3:
             self.user = user
             return True
-        
+
         return False
-    
+
     def validate_password(self, password=""):
         if len(password) >= 3:
             self.password = password
             return True
-        
+
         return False
 
     def validate_email(self, email=""):
