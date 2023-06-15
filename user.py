@@ -1,39 +1,58 @@
 import re
-from typing_effects import typingEffect, typingEffectInput
+import colorama
+from sys import exit
+from utils.typing_effects import typingEffect
 
-class UserCreationError(Exception):
-    pass
+colorama.init()
 
-def create_user(user, password, email):
-    if not user or not password or not email:
-        raise UserCreationError(typingEffect("Failed to create a new user. Fill all the blanks!"))
-    if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
-        raise UserCreationError(typingEffect("Failed to create with the provided email. Invalid email format."))
+class User:
+    user = ""
+    password = ""
+    email = ""
+    login_max_attempts = 3
 
-    return typingEffect("Successfully created user!")
+    def __init__(self):
+        pass
 
+    def login(self, user, email, password):
+        self.login_max_attempts -= 1
 
-def get_user_credentials():
-    username = typingEffectInput("What's your name? ").strip()
-    password = typingEffectInput("Please, insert a password. ").strip()
-    email = typingEffectInput("Please, insert a valid email. ").strip()
-    return username, password, email
+        if self.user == user and self.email == email and self.password == password:
+            return True
 
+        if self.login_max_attempts == 0:
+            typingEffect(colorama.Fore.RED + "Maximum number of attempts reached.")
+            exit()
 
-def handle_user_creation():
-    max_attempts = 3
-    attempts = 0
+        return False
 
-    while attempts < max_attempts:
-        username, password, email = get_user_credentials()
-        try:
-            feedback = create_user(username, password, email)
-            return username, password
+    def validate_user(self, user=""):
+        if len(user) >= 3:
+            self.user = user
+            return True
 
-        except UserCreationError as e:
-            attempts += 1
-            remaining_attempts = max_attempts - attempts
-            typingEffect(f"{remaining_attempts} attempts left.")
+        return False
 
-    typingEffect("Maximum attempts reached. Exiting program.")
-    exit()
+    def validate_password(self, password=""):
+        if len(password) >= 3:
+            self.password = password
+            return True
+
+        return False
+
+    def validate_email(self, email=""):
+        if len(email) >= 8:
+            if re.match(r"[^@]+@[^@]+\.[^@]+", email):
+                self.email = email
+                return True
+
+        return False
+
+    def get_user(self):
+        return self.user
+
+    def get_email(self):
+        return self.email
+
+    def get_password(self):
+        return self.password
