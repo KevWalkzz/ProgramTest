@@ -1,6 +1,6 @@
 import re
 from sys import exit
-from typing_effects import typingEffect, typingEffectInput
+from typing_effects import typingEffect
 
 class User:
     user = ""
