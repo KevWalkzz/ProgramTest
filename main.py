@@ -1,6 +1,6 @@
 from user import User
 from features.calculadora import *
-from typing_effects import typingEffect, typingEffectInput
+from utils.typing_effects import typingEffect, typingEffectInput
 
 
 def main():

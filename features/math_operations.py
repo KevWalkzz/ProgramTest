@@ -1,7 +1,7 @@
 from utils.typing_effects import *
 
 def power(x, pot):
-    return x ** pot
+       return x ** pot
 
 def sum(x, y):
     return x + y
